@@ -53,10 +53,10 @@ class SlayerRails::FormTest < Minitest::Test
   end
 
   def test_instantiates_from_params_with_inferred_root_key
-    params = make_params({ foo: { bar: "test" } })
+    params = make_params({ foo: { bar: 'baz' } })
     form   = ParamKeyForm.from_params(params)
 
-    assert_equal "test", form.bar
+    assert_equal 'baz', form.bar
     assert form.valid?
   end
 

@@ -52,9 +52,9 @@ module SlayerRails
           end
 
           def infer_param_key
-            class_name = name.split("::").last
-            return :form if class_name == "Form"
-            class_name.chomp("Form").underscore.to_sym
+            class_name = name.split('::').last
+            return :form if class_name == 'Form'
+            class_name.chomp('Form').underscore.to_sym
           end
 
           # Used by Rails to determine the path and param when
