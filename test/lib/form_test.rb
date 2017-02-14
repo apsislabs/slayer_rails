@@ -52,6 +52,14 @@ class SlayerRails::FormTest < Minitest::Test
     assert form.valid?
   end
 
+  def test_instantiates_from_params_with_inferred_root_key
+    params = make_params({ foo: { bar: 'baz' } })
+    form   = ParamKeyForm.from_params(params)
+
+    assert_equal 'baz', form.bar
+    assert form.valid?
+  end
+
   def test_instantiates_from_params_with_complex_data
     friends = ['Luke', 'Han', 'Chewie']
     params  = make_params({ friends: friends })
@@ -71,6 +79,38 @@ class SlayerRails::FormTest < Minitest::Test
 
     assert_equal 20, form.age
     assert form.valid?
+  end
+
+  def test_instantiates_from_model
+    person = Person.create({ name: 'Han Solo', age: 30 })
+    form = PersonForm.from_model(person)
+
+    assert_equal 'Han Solo', form.name
+    assert_equal 30, form.age
+
+    assert form.valid?
+    refute form.invalid?
+  end
+
+  def test_instantiates_invalid_from_model
+    person = Person.create({ name: 'Han Solo' })
+    form = PersonForm.from_model(person)
+
+    refute form.valid?
+    assert form.invalid?
+  end
+
+  def test_infers_param_key
+    model_name = PersonForm.model_name
+
+    assert model_name.is_a? ActiveModel::Name
+    assert_equal 'person', model_name.param_key
+  end
+
+  def test_sets_param_key
+    model_name = ParamKeyForm.model_name
+    assert model_name.is_a? ActiveModel::Name
+    assert_equal 'foo', model_name.param_key
   end
 
   private

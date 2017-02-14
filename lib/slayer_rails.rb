@@ -8,4 +8,7 @@ require 'slayer_rails/extensions/form'
 require 'slayer_rails/extensions/form_ext'
 
 module SlayerRails
+  def self.root
+    File.dirname __dir__
+  end
 end

@@ -18,6 +18,8 @@ module SlayerRails
             params     = params.deep_symbolize_keys
             attr_names = attribute_set.map(&:name)
 
+            root_key ||= param_key
+
             attr_hash = params
                         .fetch(root_key, {})
                         .merge(params.slice(*attr_names))
@@ -27,17 +29,35 @@ module SlayerRails
           end
 
           def from_model(model)
-            attr_names = attribute_set.map(&:name)
+            attr_hash = attribute_set.map(&:name)
+                        .select { |attr_name| model.respond_to?(attr_name) }
+                        .map    { |attr_name| [attr_name, model.public_send(attr_name)] }
 
-            attr_hash = attr_names.inject({}) do |n, hash|
-              hash[n] = model.public_send(n) if model.respond_to?(n)
-            end
-
-            new(attr_hash)
+            new(attr_hash.to_h)
           end
 
           def from_json(json)
             from_params(JSON.parse(json))
+          end
+
+          def set_param_key(model_name)
+            @model_name = model_name.to_s.underscore.to_sym
+          end
+
+          def param_key
+            @model_name || infer_param_key
+          end
+
+          def infer_param_key
+            class_name = name.split('::').last
+            return :form if class_name == 'Form'
+            class_name.chomp('Form').underscore.to_sym
+          end
+
+          # Used by Rails to determine the path and param when
+          # used with `form_for`
+          def model_name
+            ActiveModel::Name.new(self, nil, param_key.to_s.camelize)
           end
         end
       end
