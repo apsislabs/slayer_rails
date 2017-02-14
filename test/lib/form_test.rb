@@ -37,7 +37,7 @@ class SlayerRails::FormTest < Minitest::Test
   end
 
   def test_instantiates_from_params
-    params = make_params({ name: 'Leia Organa', age: 20})
+    params = make_params({ name: 'Leia Organa', age: 20 })
     form   = PersonForm.from_params(params)
 
     assert_equal 20, form.age
@@ -53,7 +53,7 @@ class SlayerRails::FormTest < Minitest::Test
   end
 
   def test_instantiates_from_params_with_complex_data
-    friends = ["Luke", "Han", "Chewie"]
+    friends = ['Luke', 'Han', 'Chewie']
     params  = make_params({ friends: friends })
     form    = PersonForm.from_params(params)
 
@@ -67,7 +67,7 @@ class SlayerRails::FormTest < Minitest::Test
     assert_nil form.age
     assert form.invalid?
 
-    form = PersonForm.from_params(params, additional_params: {age: 20})
+    form = PersonForm.from_params(params, additional_params: { age: 20 })
 
     assert_equal 20, form.age
     assert form.valid?

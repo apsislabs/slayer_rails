@@ -19,9 +19,9 @@ module SlayerRails
             attr_names = attribute_set.map(&:name)
 
             attr_hash = params
-                          .fetch(root_key, {})
-                          .merge(params.slice(*attr_names))
-                          .merge(additional_params)
+                        .fetch(root_key, {})
+                        .merge(params.slice(*attr_names))
+                        .merge(additional_params)
 
             new(attr_hash)
           end
