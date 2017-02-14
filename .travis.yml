@@ -3,7 +3,9 @@ before_install:
   - gem update --system
   - gem update bundler
   - gem cleanup bundler
+cache: bundler
 matrix:
+  fast_finish: true
   include:
     - rvm: 2.4.0
       gemfile: gemfiles/rails5.0.gemfile
