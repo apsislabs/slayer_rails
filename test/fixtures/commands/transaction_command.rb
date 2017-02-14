@@ -1,10 +1,11 @@
 class TransactionCommand < Slayer::Command
-  def call(pass: false)
+  def call
     transaction do
-      raise ActiveRecord::Rollback unless pass
-      pass! result: nil
+      Person.create
     end
 
+    pass! result: nil
+  rescue
     fail! result: nil
   end
 end
