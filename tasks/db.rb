@@ -5,9 +5,9 @@ require 'active_record'
 require 'yaml'
 
 GEM_ROOT      = File.dirname( __dir__ )
-DB_CONFIG     = YAML.load(File.open('test/config/database.yml'))
-SCHEMA_FILE   = "#{GEM_ROOT}/test/db/schema.rb"
-MIGRATION_DIR = "#{GEM_ROOT}/test/db/migrate"
+DB_CONFIG     = YAML.load(File.open('test/sample/config/database.yml'))
+SCHEMA_FILE   = "#{GEM_ROOT}/test/sample/db/schema.rb"
+MIGRATION_DIR = "#{GEM_ROOT}/test/sample/db/migrate"
 
 namespace :db do
   desc "Migrate the database"
