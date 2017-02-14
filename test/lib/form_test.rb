@@ -73,6 +73,25 @@ class SlayerRails::FormTest < Minitest::Test
     assert form.valid?
   end
 
+  def test_instantiates_from_model
+    person = Person.create({ name: 'Han Solo', age: 30 })
+    form = PersonForm.from_model(person)
+
+    assert_equal 'Han Solo', form.name
+    assert_equal 30, form.age
+
+    assert form.valid?
+    refute form.invalid?
+  end
+
+  def test_instantiates_invalid_from_model
+    person = Person.create({ name: 'Han Solo' })
+    form = PersonForm.from_model(person)
+
+    refute form.valid?
+    assert form.invalid?
+  end
+
   private
 
     def make_params(hash)

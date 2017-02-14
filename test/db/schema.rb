@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(version: 20170214100255) do
 
   create_table "people", force: :cascade do |t|
-    t.string   "first_name", default: "", null: false
-    t.integer  "age",        default: 0,  null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name"
+    t.integer  "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

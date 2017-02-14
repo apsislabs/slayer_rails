@@ -28,9 +28,10 @@ module SlayerRails
 
           def from_model(model)
             attr_names = attribute_set.map(&:name)
+            attr_hash = {}
 
-            attr_hash = attr_names.inject({}) do |n, hash|
-              hash[n] = model.public_send(n) if model.respond_to?(n)
+            attr_names.each do |attr_name|
+              attr_hash[attr_name] = model.public_send(attr_name) if model.respond_to?(attr_name)
             end
 
             new(attr_hash)
