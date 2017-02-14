@@ -4,9 +4,10 @@ require 'slayer_rails'
 require 'active_record'
 require 'yaml'
 
+GEM_ROOT      = File.dirname( __dir__ )
 DB_CONFIG     = YAML.load(File.open('test/config/database.yml'))
-SCHEMA_FILE   = "#{SlayerRails.root}/test/db/schema.rb"
-MIGRATION_DIR = "#{SlayerRails.root}/test/db/migrate"
+SCHEMA_FILE   = "#{GEM_ROOT}/test/db/schema.rb"
+MIGRATION_DIR = "#{GEM_ROOT}/test/db/migrate"
 
 namespace :db do
   desc "Migrate the database"

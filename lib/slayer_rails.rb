@@ -7,12 +7,6 @@ require 'slayer_rails/version'
 require 'slayer_rails/extensions/form'
 require 'slayer_rails/extensions/transaction'
 
-module SlayerRails
-  def self.root
-    File.dirname __dir__
-  end
-end
-
 module Slayer
   class Form
     include SlayerRails::Extensions::Form
