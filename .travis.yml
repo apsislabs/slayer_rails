@@ -4,14 +4,13 @@ before_install:
   - gem update bundler
   - gem cleanup bundler
 cache: bundler
-rvm:
-  - 2.3.0
-  - 2.4.0
-gemfile:
-  - gemfiles/rails_4.2.gemfile
-  - gemfiles/rails_5.0.gemfile
 matrix:
   fast_finish: true
-  allow_failures:
+  include:
+    - rvm: 2.3.0
+      gemfile:
+        - gemfiles/rails_4.2.gemfile
+        - gemfiles/rails_5.0.gemfile
     - rvm: 2.4.0
-      gemfile: gemfiles/rails4.2.gemfile
+      gemfile:
+        - gemfiles/rails_5.0.gemfile
