@@ -1,6 +1,6 @@
 # SlayerRails
 
-[![Build Status](https://travis-ci.org/apsislabs/slayer_rails.svg?branch=master)](https://travis-ci.org/apsislabs/slayer_rails)
+[![Build Status](https://travis-ci.org/apsislabs/slayer_rails.svg?branch=master)](https://travis-ci.org/apsislabs/slayer_rails) [![Coverage Status](https://coveralls.io/repos/github/apsislabs/slayer_rails/badge.svg)](https://coveralls.io/github/apsislabs/slayer_rails)
 
 ## Installation
 
