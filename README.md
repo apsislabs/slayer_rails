@@ -1,5 +1,7 @@
 # SlayerRails
 
+[![Build Status](https://travis-ci.org/apsislabs/slayer_rails.svg?branch=master)](https://travis-ci.org/apsislabs/slayer_rails)
+
 ## Installation
 
 Add this line to your application's Gemfile:
