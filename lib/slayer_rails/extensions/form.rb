@@ -29,14 +29,11 @@ module SlayerRails
           end
 
           def from_model(model)
-            attr_names = attribute_set.map(&:name)
-            attr_hash = {}
+            attr_hash = attribute_set.map(&:name)
+                        .select { |attr_name| model.respond_to?(attr_name) }
+                        .map    { |attr_name| [attr_name, model.public_send(attr_name)] }
 
-            attr_names.each do |attr_name|
-              attr_hash[attr_name] = model.public_send(attr_name) if model.respond_to?(attr_name)
-            end
-
-            new(attr_hash)
+            new(attr_hash.to_h)
           end
 
           def from_json(json)
