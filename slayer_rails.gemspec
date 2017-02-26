@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["wyatt@apsis.io"]
 
   spec.summary       = %q{Rails extensions for Slayer.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "http://www.apsis.io"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
