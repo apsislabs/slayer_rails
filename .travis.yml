@@ -1,21 +1,15 @@
+sudo: false
 language: ruby
-env:
-  - ARUBA_TIMEOUT=240
+cache: bundler
 before_install:
   - gem update --system
   - gem update bundler
   - gem cleanup bundler
-cache: bundler
-rvm:
-  - 2.3.0
-  - 2.4.0
-gemfile:
-  - gemfiles/rails_4.2.gemfile
-  - gemfiles/rails_5.0.gemfile
 matrix:
-  fast_finish: true
-  allow_failures:
-    - rvm: jruby-19mode
-      gemfile: gemfiles/rails5.0.gemfile
-    - rvm: 2.1.5
-      gemfile: gemfiles/rails5.0.gemfile
+  include:
+    - rvm: 2.4.0
+      gemfile: gemfiles/rails_5.0.gemfile
+    - rvm: 2.3.0
+      gemfile: gemfiles/rails_4.2.gemfile
+    - rvm: 2.3.0
+      gemfile: gemfiles/rails_5.0.gemfile

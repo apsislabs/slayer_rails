@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'mocha', '~> 1.2'
   spec.add_development_dependency 'byebug', '~> 9.0'
   spec.add_development_dependency 'sqlite3', '~> 1.3'
+  spec.add_development_dependency 'combustion', '~> 0.5.5'
 end
