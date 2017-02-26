@@ -2,7 +2,7 @@ require 'rails/generators/test_case'
 
 class SlayerRails::ServiceGeneratorTest < Rails::Generators::TestCase
   tests Slayer::Generators::ServiceGenerator
-  destination File.expand_path("../sample/tmp", File.dirname(__FILE__))
+  destination File.expand_path("../../sample/tmp", File.dirname(__FILE__))
 
   arguments %w(Test)
 

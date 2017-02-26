@@ -2,7 +2,7 @@ require 'rails/generators/test_case'
 
 class SlayerRails::CommandGeneratorTest < Rails::Generators::TestCase
   tests Slayer::Generators::CommandGenerator
-  destination File.expand_path("../sample/tmp", File.dirname(__FILE__))
+  destination File.expand_path("../../sample/tmp", File.dirname(__FILE__))
 
   arguments %w(Test)
 
