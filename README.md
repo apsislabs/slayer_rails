@@ -18,7 +18,11 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Appraisal
 
-Testing against various `Rails` versions is handled with [appraisal](https://github.com/thoughtbot/appraisal).
+Testing against various `Rails` versions is handled with [appraisal](https://github.com/thoughtbot/appraisal). To test, run:
+
+```sh
+$ bundle exec appraisal rake test
+```
 
 ## Contributing
 
