@@ -4,8 +4,8 @@ class TransactionCommand < Slayer::Command
       Person.create
     end
 
-    pass! result: nil
+    pass!
   rescue
-    fail! result: nil
+    fail!
   end
 end

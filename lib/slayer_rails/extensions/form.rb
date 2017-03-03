@@ -18,10 +18,9 @@ module SlayerRails
             params     = params.deep_symbolize_keys
             attr_names = attribute_set.map(&:name)
 
-            root_key ||= param_key
+            params = params.fetch(root_key, {}) if root_key.present?
 
             attr_hash = params
-                        .fetch(root_key, {})
                         .merge(params.slice(*attr_names))
                         .merge(additional_params)
 
