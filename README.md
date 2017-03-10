@@ -26,7 +26,7 @@ $ bundle exec appraisal rake test
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Wyatt Kirby/slayer_rails.
+Bug reports and pull requests are welcome on GitHub at https://github.com/apsislabs/slayer_rails.
 
 ## License
 
