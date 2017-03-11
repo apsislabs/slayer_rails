@@ -1,7 +1,3 @@
-def genlog(str)
-  `echo "#{str}" >> genlog`
-end
-
 module Slayer
   module Generators
     class ScaffoldGenerator < NamedBase
@@ -14,11 +10,8 @@ module Slayer
       argument :fields, :type => :array, :required => false, :desc => "The attributes of the generated form. name:String completed:Boolean"
 
       def initialize(args, *options) #:nodoc:
-        genlog "s1: #{args.inspect}"
         super
-        genlog "s2: #{args.inspect}"
         @args = args
-        genlog "s3: #{@args.inspect}"
       end
 
       def create_command_files
@@ -26,9 +19,6 @@ module Slayer
       end
 
       def create_form_files
-        genlog "slayer:scaffold:create_form_files"
-        genlog "#{@args.inspect}"
-        genlog "#{@args.join(" ")}"
         generate "slayer:form", "#{@args.join(" ")}"
       end
     end
