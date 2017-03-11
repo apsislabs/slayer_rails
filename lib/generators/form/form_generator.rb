@@ -1,6 +1,8 @@
+require "rails/generators/rails/model/model_generator"
+
 module Slayer
   module Generators
-    class FormGenerator < NamedBase
+    class FormGenerator < Rails::Generators::ModelGenerator
       desc "This generator creates new Slayer::Forms"
 
       source_root File.expand_path("../templates", __FILE__)
