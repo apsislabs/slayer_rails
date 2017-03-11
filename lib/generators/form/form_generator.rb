@@ -18,9 +18,6 @@ module Slayer
       def create_form_files
         template "form.rb", File.join("app", "forms", class_path, "#{file_name}_form.rb")
       end
-
-      private
-
     end
   end
 end
