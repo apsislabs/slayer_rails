@@ -1,22 +1,25 @@
 module Slayer
   module Generators
-    class FormGenerator < NamedBase
-      desc "This generator creates new Slayer::Forms"
+    class ScaffoldGenerator < NamedBase
+      desc "This generator creates a new Slayer::Commands and a corresponding Slayer::Form"
 
       source_root File.expand_path("../templates", __FILE__)
-      check_class_collision suffix: "Form"
+      check_class_collision suffix: "Command"
 
       argument :name, type: :string
       argument :fields, :type => :array, :required => false, :desc => "The attributes of the generated form. name:String completed:Boolean"
 
       def initialize(args, *options) #:nodoc:
         super
-        args.shift
-        @fields = args.map{|a| a.split(":")}
+        @args = args
+      end
+
+      def create_command_files
+        generate "slayer:command", "#{file_name}"
       end
 
       def create_form_files
-        template "form.rb", File.join("app", "forms", class_path, "#{file_name}_form.rb")
+        generate "slayer:form", "#{@args.join(" ")}"
       end
     end
   end

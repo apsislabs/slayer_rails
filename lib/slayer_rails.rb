@@ -11,6 +11,7 @@ require 'generators/slayer_base'
 require 'generators/command/command_generator'
 require 'generators/service/service_generator'
 require 'generators/form/form_generator'
+require 'generators/scaffold/scaffold_generator'
 
 module Slayer
   class Form
