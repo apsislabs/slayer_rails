@@ -18,6 +18,16 @@ module Slayer
       def create_form_files
         template "form.rb", File.join("app", "forms", class_path, "#{file_name}_form.rb")
       end
+
+      def create_form_factory_files
+        if Slayer.factory_bot && class_exists?(FactoryBot)
+          FactoryBot.definition_file_paths.each do |path|
+            if File.directory?(path)
+              template 'form_factory.rb', File.join(path, "forms/#{file_name}_forms.rb")
+              break
+            end
+          end
+      end
     end
   end
 end

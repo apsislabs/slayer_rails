@@ -21,6 +21,12 @@ module Slayer
       def create_form_files
         generate "slayer:form", "#{@args.join(" ")}"
       end
+
+      def create_spec_files
+      end
+
+      def create_factory_files
+      end
     end
   end
 end
