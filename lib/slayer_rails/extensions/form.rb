@@ -9,7 +9,9 @@ module SlayerRails
         include ActiveModel::Model
 
         def validate!
-          raise Slayer::FormValidationError, errors unless valid?
+          return if valid?
+          message = errors.full_messages.join(", ")
+          raise Slayer::FormValidationError, message unless valid?
         end
 
         class << self
