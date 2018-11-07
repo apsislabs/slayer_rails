@@ -10,7 +10,7 @@ module SlayerRails
 
         def validate!
           return if valid?
-          message = errors.full_messages.join(", ")
+          message = errors.full_messages.join(', ')
           raise Slayer::FormValidationError, message unless valid?
         end
 
