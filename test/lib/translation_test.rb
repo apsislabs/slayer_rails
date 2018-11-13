@@ -17,24 +17,24 @@ class SlayerRails::TranslationTest < ActiveSupport::TestCase
   end
 
   def test_translate
-    ["commands.test.demo", "services.test.demo", "forms.test.demo"].each do |key|
-      expected = key.split('.').first.singluarize.titleize
-      assert_equal expected, TestCommand.new.t key
-      assert_equal expected, TestService.new.t key
-      assert_equal expected, TestForm.new.t key
+    ["commands.transaction.demo", "services.transaction.demo", "forms.person.demo"].each do |key|
+      expected = key.split('.').first.singularize.titleize
+      assert_equal expected, TransactionCommand.new.t(key)
+      assert_equal expected, TransactionService.new.t(key)
+      assert_equal expected, PersonForm.new.t(key)
     end
   end
 
   def test_translate_shortcut
-    [TestCommand, TestService, TestForm].each do |klass|
+    [TransactionCommand, TransactionService, PersonForm].each do |klass|
       expected = klass.name.underscore.split("_").last.titleize
-      assert_equal expected, klass.new.t ".demo"
+      assert_equal expected, klass.new.t(".demo")
     end
   end
 
   def test_localize
-    [TestCommand, TestService, TestForm].each do |klass|
-      assert_equal "3PM", klass.new.l three_o_clock, format: "%l%p"
+    [TransactionCommand, TransactionService, PersonForm].each do |klass|
+      assert_equal "03PM", klass.new.l(three_o_clock, format: "%I%p")
     end
   end
 

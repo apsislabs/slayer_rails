@@ -1,0 +1,10 @@
+en:
+  commands:
+    transaction:
+      demo: Command
+  services:
+    transaction:
+      demo: Service
+  forms:
+    person:
+      demo: Form
