@@ -1,5 +1,6 @@
 # Setup Test Coverage Reporting
 # --------------------------------------------------------
+require 'byebug'
 require 'simplecov'
 require 'coveralls'
 require 'minitest/autorun'

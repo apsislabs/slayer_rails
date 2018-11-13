@@ -1,0 +1,14 @@
+en:
+  commands:
+    good_customer:
+      awesome_product:
+        run_foo_bar:
+          demo: It Lives
+    transaction:
+      demo: Command
+  services:
+    transaction:
+      demo: Service
+  forms:
+    person:
+      demo: Form
