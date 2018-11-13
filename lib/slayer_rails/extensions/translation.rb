@@ -19,16 +19,20 @@ module SlayerRails
         def full_key(key)
           return key unless key.start_with? '.'
 
+          return "#{implied_path}#{key}"
+        end
+
+        def implied_path
           module_path = self.class.name
-            .split("::")
+            .split('::')
             .map { |x| x.underscore }
 
-          class_name_parts = module_path.pop.split("_")
+          class_name_parts = module_path.pop.split('_')
 
           module_path.unshift(class_name_parts.pop.pluralize)
           module_path.push(class_name_parts.join('_'))
 
-          return "#{module_path.join(".")}#{key}"
+          module_path.join('.')
         end
       end
     end
