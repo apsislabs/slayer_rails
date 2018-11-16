@@ -6,10 +6,20 @@ module SlayerRails
       extend ActiveSupport::Concern
 
       included do
-        include ActiveModel::Model
+        include ActiveModel::Validations
 
         def validate!
           raise Slayer::FormValidationError, errors unless valid?
+        end
+
+        def to_model(klass, attr_map = nil)
+          all_attrs = klass.new.attributes.keys.map(&:to_sym)
+          return klass.new(attributes.slice(*all_attrs)) if attr_map.nil?
+          attrs = attr_map.inject({}) do |memo, (key, val)|
+            memo[key] = self.send(val)
+            memo
+          end
+          klass.new(attrs)
         end
 
         class << self
