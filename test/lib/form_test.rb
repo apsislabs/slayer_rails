@@ -131,6 +131,28 @@ class SlayerRails::FormTest < Minitest::Test
     assert_equal person.name, person_form.age.to_s
   end
 
+  def test_validates_associated
+    org_form = OrgForm.new({
+      owner: PersonForm.new({
+        name: "Yoda"
+      })
+    })
+    refute org_form.valid?
+    assert_equal org_form.errors[:owner].length, 1
+    assert_equal org_form.errors[:owner][0], "age can't be blank"
+  end
+
+  def test_validates_associated
+    org_form = OrgForm.new({
+      owner: PersonForm.new({
+        name: "Yoda",
+        age: 900
+      })
+    })
+    assert org_form.valid?
+    assert_equal org_form.errors[:owner].length, 0
+  end
+
   private
 
     def make_params(hash)

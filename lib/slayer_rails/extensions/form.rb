@@ -50,6 +50,16 @@ module SlayerRails
           def from_json(json)
             from_params(JSON.parse(json))
           end
+
+          def validates_associated(*keys)
+            self.validates_each(*keys) do |record, attr, value|
+              unless value.valid?
+                value.errors.each do |field, err_message|
+                  record.errors.add(attr, "#{field} #{err_message}")
+                end
+              end
+            end
+          end
         end
       end
     end
