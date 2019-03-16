@@ -100,6 +100,59 @@ class SlayerRails::FormTest < Minitest::Test
     assert form.invalid?
   end
 
+  def test_simple_to_model
+    person_form = PersonForm.new({ name: 'Luke Skywalker', age: 20 })
+    person = person_form.to_model(Person)
+
+    assert person.is_a? Person
+    assert_equal person.name, person_form.name
+    assert_equal person.age, person_form.age
+  end
+
+  def test_custom_to_model_methods
+    bad_form = BadForm.new({ name_and_age: 'Luke 20' })
+    person = bad_form.to_model(Person, {
+      name: :get_name,
+      age: :get_age,
+    })
+
+    assert person.is_a? Person
+    assert_equal person.name, bad_form.get_name
+    assert_equal person.age, bad_form.get_age
+  end
+
+  def test_custom_to_model_mapping
+    person_form = PersonForm.new({ name: 'Luke Skywalker', age: 20 })
+    person = person_form.to_model(Person, {
+      name: :age,
+    })
+
+    assert person.is_a? Person
+    assert_equal person.name, person_form.age.to_s
+  end
+
+  def test_validates_associated
+    org_form = OrgForm.new({
+      owner: PersonForm.new({
+        name: "Yoda"
+      })
+    })
+    refute org_form.valid?
+    assert_equal org_form.errors[:owner].length, 1
+    assert_equal org_form.errors[:owner][0], "age can't be blank"
+  end
+
+  def test_validates_associated
+    org_form = OrgForm.new({
+      owner: PersonForm.new({
+        name: "Yoda",
+        age: 900
+      })
+    })
+    assert org_form.valid?
+    assert_equal org_form.errors[:owner].length, 0
+  end
+
   private
 
     def make_params(hash)
