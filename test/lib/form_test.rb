@@ -100,18 +100,18 @@ class SlayerRails::FormTest < Minitest::Test
     assert form.invalid?
   end
 
-  def test_simple_to_model
+  def test_simple_as_model
     person_form = PersonForm.new({ name: 'Luke Skywalker', age: 20 })
-    person = person_form.to_model(Person)
+    person = person_form.as_model(Person)
 
     assert person.is_a? Person
     assert_equal person.name, person_form.name
     assert_equal person.age, person_form.age
   end
 
-  def test_custom_to_model_methods
+  def test_custom_as_model_methods
     bad_form = BadForm.new({ name_and_age: 'Luke 20' })
-    person = bad_form.to_model(Person, {
+    person = bad_form.as_model(Person, {
       name: :get_name,
       age: :get_age,
     })
@@ -121,9 +121,9 @@ class SlayerRails::FormTest < Minitest::Test
     assert_equal person.age, bad_form.get_age
   end
 
-  def test_custom_to_model_mapping
+  def test_custom_as_model_mapping
     person_form = PersonForm.new({ name: 'Luke Skywalker', age: 20 })
-    person = person_form.to_model(Person, {
+    person = person_form.as_model(Person, {
       name: :age,
     })
 
