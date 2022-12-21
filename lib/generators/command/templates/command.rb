@@ -1,17 +1,17 @@
 <% module_namespacing do -%>
 class <%= class_name %>Command < Slayer::Command
-  def call(<%= file_name %>_form:)
-    fail! unless arguments_valid?(<%= file_name %>_form)
+  def call(args:)
+    return err unless args_valid?(args)
 
     transaction do
       # Do your database interaction here!
     end
 
-    pass!
+    ok
   end
 
-  def arguments_valid?(<%= file_name %>_form)
-    <%= file_name %>_form.kind_of?(<%= class_name %>Form) && <%= file_name %>_form.valid?
+  def args_valid?(args)
+    true
   end
 end
 <% end -%>

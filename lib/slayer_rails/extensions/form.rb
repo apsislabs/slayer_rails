@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 
 module SlayerRails
@@ -5,11 +7,13 @@ module SlayerRails
     module Form
       extend ActiveSupport::Concern
 
+      # rubocop:disable Metrics/BlockLength
       included do
         include ActiveModel::Validations
 
         def validate!
           return if valid?
+
           message = errors.full_messages.join(', ')
           raise Slayer::FormValidationError, message unless valid?
         end
@@ -17,9 +21,9 @@ module SlayerRails
         def as_model(klass, attr_map = nil)
           all_attrs = klass.new.attributes.keys.map(&:to_sym)
           return klass.new(attributes.slice(*all_attrs)) if attr_map.nil?
-          attrs = attr_map.inject({}) do |memo, (key, val)|
-            memo[key] = self.send(val)
-            memo
+
+          attrs = attr_map.transform_values do |val|
+            send(val)
           end
           klass.new(attrs)
         end
@@ -41,8 +45,8 @@ module SlayerRails
 
           def from_model(model)
             attr_hash = attribute_set.map(&:name)
-                        .select { |attr_name| model.respond_to?(attr_name) }
-                        .map    { |attr_name| [attr_name, model.public_send(attr_name)] }
+                                     .select { |attr_name| model.respond_to?(attr_name) }
+                                     .map    { |attr_name| [attr_name, model.public_send(attr_name)] }
 
             new(attr_hash.to_h)
           end
@@ -52,16 +56,17 @@ module SlayerRails
           end
 
           def validates_associated(*keys)
-            self.validates_each(*keys) do |record, attr, value|
+            validates_each(*keys) do |record, attr, value|
               unless value.valid?
-                value.errors.each do |field, err_message|
-                  record.errors.add(attr, "#{field} #{err_message}")
+                value.errors.each do |err|
+                  record.errors.add(attr, "#{err.attribute} #{err.message}")
                 end
               end
             end
           end
         end
       end
+      # rubocop:enable Metrics/BlockLength
     end
   end
 end

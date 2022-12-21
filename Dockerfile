@@ -1,15 +1,17 @@
-FROM ruby:2.5.1-alpine
-MAINTAINER wyatt@apsis.io
+FROM ruby:2.7-buster
 
-RUN apk add --no-cache --update \
-    bash \
-    alpine-sdk \
-    sqlite-dev
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+  build-essential \
+  git \
+  bash \
+  sqlite3
 
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 
 COPY . $APP_HOME/
+
+RUN bundle config set force_ruby_platform true
 
 EXPOSE 3000
 
