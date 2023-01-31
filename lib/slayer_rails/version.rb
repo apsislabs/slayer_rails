@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SlayerRails
-  VERSION = '0.4.0.beta4'
+  VERSION = '0.5.0.beta'
 end
