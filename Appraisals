@@ -1,7 +1,11 @@
-appraise "rails-4.2" do
-  gem "rails", "4.2.0"
+# frozen_string_literal: true
+
+appraise 'rails_6.1' do
+  gem 'rails', '6.1'
+  gem 'tzinfo-data'
 end
 
-appraise "rails-5.0" do
-  gem "rails", "5.0.0"
+appraise 'rails_7.0' do
+  gem 'rails', '7.0'
+  gem 'tzinfo-data'
 end

@@ -11,6 +11,6 @@
 *Gemfile.lock
 .byebug_history
 
-/test/sample/tmp/
+/spec/dummy/tmp/
 *.sqlite3
 *.log

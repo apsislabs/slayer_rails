@@ -1,15 +1,15 @@
-require "rubygems"
-require "bundler/setup"
+# frozen_string_literal: true
 
-require "bundler/gem_tasks"
-require "rake/testtask"
+require 'rubygems'
+require 'bundler/setup'
+require 'bundler/gem_tasks'
 
-require "./tasks/db"
+require 'rake'
+require 'rspec/core/rake_task'
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << "test"
-  t.libs << "lib"
-  t.test_files = FileList['test/**/*_test.rb']
+namespace :dummy do
+  require_relative 'spec/dummy/application'
+  Dummy::Application.load_tasks
 end
 
-task :default => :test
+task default: :spec
