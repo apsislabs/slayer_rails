@@ -28,4 +28,6 @@ jobs:
       - name: Rubocop
         run: rubocop
       - name: Run tests
-        run: bundle exec appraisal rspec
+        run: |
+          RAILS_ENV=test bundle exec rake dummy:db:schema:load
+          bundle exec appraisal rspec
