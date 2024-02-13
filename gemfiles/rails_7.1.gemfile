@@ -8,6 +8,6 @@ gem "nokogiri"
 gem "rspec-rails"
 gem "sqlite3"
 gem "tzinfo-data"
-gem "rails", "~> 6.1"
+gem "rails", "~> 7.1"
 
 gemspec path: "../"
