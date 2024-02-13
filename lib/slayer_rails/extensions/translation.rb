@@ -7,13 +7,13 @@ module SlayerRails
 
       # rubocop:disable Metrics/BlockLength
       included do
-        def translate(key, options = {})
-          I18n.translate(self.class.full_key(key), options.dup)
+        def translate(key, **options)
+          I18n.translate(self.class.full_key(key), **options)
         end
         alias_method :t, :translate
 
-        def localize(*args)
-          I18n.localize(*args)
+        def localize(*args, **kwargs)
+          I18n.localize(*args, **kwargs)
         end
         alias_method :l, :localize
 

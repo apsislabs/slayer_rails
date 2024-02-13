@@ -4,7 +4,6 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'rails/all'
 require 'dummy/application'
-
 require 'byebug'
 require 'rspec/rails'
 require 'slayer_rails'

@@ -1,4 +1,4 @@
-FROM ruby:2.7-buster
+FROM ruby:3.2-buster
 
 RUN apt-get update -qq && apt-get install -y --no-install-recommends \
   build-essential \
