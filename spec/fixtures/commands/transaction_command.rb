@@ -7,7 +7,7 @@ class TransactionCommand < Slayer::Command
     end
 
     ok
-  rescue StandardError
+  rescue
     err
   end
 end

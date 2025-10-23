@@ -19,7 +19,7 @@ module SlayerRails
 
         class << self
           def full_key(key)
-            return key unless key.start_with? '.'
+            return key unless key.start_with? "."
 
             "#{implied_path}#{key}"
           end
@@ -29,16 +29,16 @@ module SlayerRails
           end
 
           def build_implied_path
-            module_path = name.underscore.split('/')
+            module_path = name.underscore.split("/")
 
-            class_name_parts = module_path.pop.split('_')
+            class_name_parts = module_path.pop.split("_")
 
             class_name_parts.pop if %w[command service form].include? class_name_parts.last
 
             module_path.unshift(slayer_type)
-            module_path.push(class_name_parts.join('_'))
+            module_path.push(class_name_parts.join("_"))
 
-            module_path.join('.')
+            module_path.join(".")
           end
 
           def slayer_type
@@ -46,8 +46,8 @@ module SlayerRails
           end
 
           def detect_slayer_type
-            return 'commands' if self <= Slayer::Command
-            return 'forms' if self <= Slayer::Form
+            return "commands" if self <= Slayer::Command
+            return "forms" if self <= Slayer::Form
 
             raise NotImplementedException, "Unknown Slayer Class: #{name}"
           end
