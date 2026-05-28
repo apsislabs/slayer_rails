@@ -1,4 +1,4 @@
-FROM ruby:3.2-buster
+FROM ruby:3.4-bookworm
 
 RUN apt-get update -qq && apt-get install -y --no-install-recommends \
   build-essential \

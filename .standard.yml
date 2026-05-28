@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+# Standard Ruby configuration
+# https://github.com/testdouble/standard
+
+ruby_version: 3.3
+
+ignore:
+  - 'bin/**/*'
+  - 'vendor/**/*'
+  - 'tmp/**/*'
+  - 'lib/generators/**/templates/**/*'
+
+fix: true
