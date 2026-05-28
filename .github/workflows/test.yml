@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby-version: ['3.4', '3.3', '3.2']
+        ruby-version: ['4.0', '3.4', '3.3']
 
     steps:
       - uses: actions/checkout@v4
@@ -25,9 +25,7 @@ jobs:
           bundle install
           bundle exec appraisal install
           RAILS_ENV=test bundle exec rake dummy:db:reset
-      - name: Standard
-        run: bundle exec standardrb
-      - name: Run tests
+      - name: Lint and test
         run: |
           RAILS_ENV=test bundle exec rake dummy:db:schema:load
-          bundle exec appraisal rspec
+          bundle exec rake
