@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", ">= 7.1.0"
   spec.add_dependency "slayer", ">= 0.5"
 
+  spec.add_development_dependency "bump"
   spec.add_development_dependency "bundler", ">= 2.4.0"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "standard", "~> 1.39"
